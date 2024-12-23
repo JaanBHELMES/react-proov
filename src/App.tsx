@@ -9,20 +9,19 @@ import Loader from './components/Loader/Loader';
 function App(): React.JSX.Element {
   const [orders, setOrders] = useState([] as OrderTableRow[]);
   const [isLoading, setIsLoading] = useState(true);
+  const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
-    refresh();
+    search();
   }, []);
   function refresh(): void {
-    setIsLoading(true);
-    fetch('/api/orders')
-      .then((res) => res.json().then((json) => setOrders(json))
-        .finally(() => setIsLoading(false)));
+    search(searchQuery);
   }
   function search(value?: string): void {
     if (!value?.length || value?.length >= 2) {
+      setSearchQuery(value);
       setIsLoading(true);
-      fetch('/api/orders?' + new URLSearchParams({search: value}).toString())
+      fetch('/api/orders' + (value?.length ? ('?' + new URLSearchParams({search: value}).toString()) : ''))
         .then((res) => res.json().then((json) => setOrders(json))
           .finally(() => setIsLoading(false)));
     }
