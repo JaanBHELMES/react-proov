@@ -1,0 +1,24 @@
+table {
+  border: 1px solid #ededed;
+  border-radius: 0.25rem;
+  min-width: 100%;
+  border-spacing: 0;
+}
+table th {
+  text-align: left;
+}
+table th, table td {
+  padding: 0.625rem 1.5rem;
+}
+table tr:nth-child(odd) td {
+  background: #F5F5F5;
+}
+.status-paid {
+  color: #2CD540;
+}
+.status-pending {
+  color: #E4C93D;
+}
+.status-unpaid {
+  color: #F22424;
+}
